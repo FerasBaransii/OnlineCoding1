@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+
+import React from 'react';
+import Lobby from './screens/Lobby';
+import CodeBlockPage from './screens/CodeBlockPage';
+import TestComponent from './screens/TestComponent';  // Add this import
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <h1>Your React App</h1>
+        <Route path="/" exact component={Lobby} />
+        <Route path="/CodeBlockPage/:item" component={CodeBlockPage} />
+
+        
+        <Route path="/test" component={TestComponent} />
+      </div>
+    </Router>
+    
   );
 }
 
