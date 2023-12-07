@@ -12,9 +12,8 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Your React App</h1>
         <Route path="/" exact component={Lobby} />
-        <Route path="/CodeBlockPage/:item" component={CodeBlockPage} />
+        <Route path="/CodeBlockPage/:code_block_id" component={CodeBlockPage} />
         <Route path="/test" component={TestComponent} />
       </div>
     </Router>

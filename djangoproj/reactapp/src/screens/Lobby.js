@@ -1,8 +1,10 @@
+// Lobby.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Lobby = () => {
     const [titles, setTitles] = useState([]);
+    const [codeBlocks, setCodeBlocks] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -10,15 +12,15 @@ const Lobby = () => {
 
     const fetchData = async () => {
         try {
-            console.log("here")
+            
             const response = await fetch('http://localhost:8000/api/code_blocks/');
             const data = await response.json();
-            
             // Extract only the titles from the data
             const titlesOnly = data.map(item => item.title);
+            setCodeBlocks(data);
+            
 
             // Save titles in state
-            setTitles(titlesOnly);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -28,9 +30,10 @@ const Lobby = () => {
         <div>
             <p>Choose code block</p>
             <ul>
-                {titles.map((title, index) => (
+                {codeBlocks.map((codeBlock, index) => (
                     <li key={index}>
-                        {title}
+                        {/* <Link to={`/CodeBlockPage/?code_block_id = ${codeBlock.id}`}>{codeBlock.title}</Link> */}
+                        <Link to={`/CodeBlockPage/${codeBlock.id}/`}>{codeBlock.title}</Link>
                     </li>
                 ))}
             </ul>
